@@ -28,7 +28,8 @@ urlpatterns = [
     path('login', view_login, name='login'),
     path('register', RegisterView.as_view(), name='register'),
     path('logout', logout_view, name='logout'),
-    path('createPost', create_post, name = 'Create')
+    #path('createPost', create_post, name = 'Create'),
+    path('create/', PostView.as_view(), name='create'),
 ]
 
 if settings.DEBUG:

@@ -4,7 +4,9 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views import View
-
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import CreateView
+from blog.forms import Postform
 
 def view_login(request):
      if request.method == 'POST':
@@ -60,3 +62,8 @@ def logout_view(request):
 
 def create_post(request):
      return redirect('home')
+
+class PostView(LoginRequiredMixin, CreateView):
+     model = Post
+     template_name = 'create.html'
+     form_class = Postform

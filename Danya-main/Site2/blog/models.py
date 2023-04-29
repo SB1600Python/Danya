@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse
 
 # Create your models here.
 class Post(models.Model):
@@ -8,6 +8,8 @@ class Post(models.Model):
      image = models.ImageField(upload_to='photos/%Y/%m/%d', null=True, blank=True)
      category = models.ForeignKey('Category', on_delete=models.PROTECT, null=True)
      
+     def get_absolute_url(self):
+          return reverse('home')
 
      def __str__(self):
           return self.title
@@ -17,3 +19,4 @@ class Category(models.Model):
 
      def __str__(self):
           return self.name
+     
